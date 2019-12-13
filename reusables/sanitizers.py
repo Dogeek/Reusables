@@ -93,6 +93,9 @@ def sanitized_input(message="", cast_as=None, number_of_retries=-1,
 
 @contextmanager
 def ignored(*exceptions):
+    """
+        Ignores provided exceptions with a context manager.
+    """
     try:
         yield
     except exceptions:
