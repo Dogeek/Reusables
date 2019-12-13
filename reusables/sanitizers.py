@@ -2,6 +2,7 @@ try:
     from collections.abc import Iterable, Callable
 except ImportError:
     from collections import Iterable, Callable
+from contextlib import contextmanager
 
 from reusables.shared_variables import ReusablesError
 
@@ -88,3 +89,11 @@ def sanitized_input(message="", cast_as=None, number_of_retries=-1,
             continue
     raise RetryCountExceededError("RetryCountExceededError : count exceeded in"
                                   "function 'sanitized_input' of {}".format(__name__))
+
+
+@contextmanager
+def ignored(*exceptions):
+    try:
+        yield
+    except exceptions:
+        pass
